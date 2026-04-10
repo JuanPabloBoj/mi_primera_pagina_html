@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Datos del Usuarios</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ef4444, #facc15, #3b82f6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .tarjeta {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            border: 5px solid #ef4444;
+            position: relative;
+            animation: aparecer 0.5s ease;
+        }
+
+        /* Línea tipo Pokébola */
+        .tarjeta::before {
+            content: "";
+            position: absolute;
+            top: 65px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: black;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .titulo {
+            text-align: center;
+            color: #ef4444;
+            margin-bottom: 15px;
+        }
+
+        .info p {
+            font-size: 16px;
+            margin-bottom: 6px;
+            color: #1e293b;
+        }
+
+        .info span {
+            font-weight: bold;
+            color: #3b82f6;
+        }
+
+        .seccion {
+            margin-top: 18px;
+            margin-bottom: 10px;
+            color: #facc15;
+            border-left: 5px solid #facc15;
+            padding-left: 10px;
+        }
+
+        .lista {
+            list-style: none;
+        }
+
+        .lista li {
+            background: #f1f5f9;
+            margin-bottom: 8px;
+            padding: 10px;
+            border-radius: 10px;
+            border-left: 5px solid #3b82f6;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .lista li:hover {
+            background: #e0f2fe;
+            transform: translateX(6px);
+        }
+
+        .acciones {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .boton {
+            text-align: center;
+            padding: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            background: linear-gradient(135deg, #3b82f6, #facc15);
+            color: #1e293b;
+            border: 2px solid #1e293b;
+            transition: 0.3s;
+        }
+
+        .boton:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 480px) {
+            .tarjeta {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="contenedor">
+    <div class="tarjeta">
+
+        <h1 class="titulo">¡Hola!</h1>
+
+        <div class="info">
+            <p>Nombre: <span th:text="${Nombre}"></span></p>
+            <p>Edad: <span th:text="${Edad}"></span></p>
+        </div>
+
+        <h3 class="seccion">Habilidades</h3>
+        <ul class="lista">
+            <li th:each="hab : ${Habilidades}" th:text="${hab}"></li>
+        </ul>
+
+        <div class="acciones">
+            <a class="boton" th:href="@{/datos}">Ir a Datos</a>
+            <a class="boton" th:href="@{/perfil}">Ir a Perfil</a>
+            <a class="boton" th:href="@{/home}">Ir a Home</a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
